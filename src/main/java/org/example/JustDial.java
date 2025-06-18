@@ -3,7 +3,9 @@ package org.example;
 import com.opencsv.CSVWriter;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -11,8 +13,8 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
 
-public class EmployeeScrapper {
 
+public class JustDial {
     static void scrapeData(WebDriver driver, File fileToSave) {
         boolean append = fileToSave.exists() && fileToSave.length() > 0;
 
@@ -58,7 +60,8 @@ public class EmployeeScrapper {
 
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        driver.get("https://spicemoney.ivorygroup.in/agents.php");
+        driver.get("https://www.justdial.com/Gurgaon/Paying-Guest-Accommodations-For-Women/nct-11273561");
+
 
         String userHome = System.getProperty("user.home");
         String downloadPath = userHome + File.separator + "Downloads" + File.separator + "EmployeeUP.csv";
@@ -102,3 +105,6 @@ public class EmployeeScrapper {
         System.out.println("✅ Scraping completed for all cities.");
     }
 }
+
+
+

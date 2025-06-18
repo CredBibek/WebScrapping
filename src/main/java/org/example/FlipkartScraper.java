@@ -31,7 +31,6 @@ public class FlipkartScraper {
             String[] header = {"Title", "Price"};
             writer.writeNext(header);
 
-            // Use explicit wait to ensure elements are loaded
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
             List<WebElement> products = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(".yKfJKb")));
 
@@ -42,7 +41,6 @@ public class FlipkartScraper {
                     System.out.println(title + " -- " + price);
                    
 
-                    // Write data to CSV
                     writer.writeNext(new String[]{title, price});
                 } catch (Exception ignored) {
                     ignored.printStackTrace();
