@@ -15,6 +15,7 @@ public class Sum {
 
 
 
+
         int sum = 0;
         for(int number : numbers) {
             sum += number;
