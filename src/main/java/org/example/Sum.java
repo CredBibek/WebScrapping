@@ -13,6 +13,8 @@ public class Sum {
 
         numbers[3] = scanner.next().charAt(0);
 
+
+
         int sum = 0;
         for(int number : numbers) {
             sum += number;
