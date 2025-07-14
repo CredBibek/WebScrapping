@@ -14,7 +14,7 @@ import java.util.*;
 public class JustDialScrapper {
 
     public static void main(String[] args) throws InterruptedException {
-        // Setup ChromeDriver with options to avoid detection
+        // Setup ChromeDriver with options
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-blink-features=AutomationControlled");
         options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36");
@@ -24,7 +24,7 @@ public class JustDialScrapper {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
-        driver.get("https://www.justdial.com/Gurgaon/24-Hours-Cyber-Cafe/nct-10989826");
+        driver.get("https://www.justdial.com/Delhi/CA/nct-10066128?trkid=91565-delhi&term=");
 
         Set<String> scraped = new HashSet<>();
         List<String[]> csvData = new ArrayList<>();
@@ -51,23 +51,9 @@ public class JustDialScrapper {
                     WebElement phoneElement = listing.findElement(By.cssSelector("span.callcontent"));
 
                     String phone = "";
-
-                    // If already visible
                     List<WebElement> telLinks = phoneElement.findElements(By.cssSelector("a[href^='tel:']"));
                     if (!telLinks.isEmpty()) {
                         phone = telLinks.get(0).getText().trim();
-                    } else {
-                        // If it's "Show Number", click to reveal
-                        try {
-                            phoneElement.click();
-                            Thread.sleep(150); // wait for number to appear
-                            telLinks = phoneElement.findElements(By.cssSelector("a[href^='tel:']"));
-                            if (!telLinks.isEmpty()) {
-                                phone = telLinks.get(0).getText().trim();
-                            }
-                        } catch (Exception clickEx) {
-                            System.out.println("⚠️ Could not click to reveal number for: " + name);
-                        }
                     }
 
                     if (!phone.isEmpty()) {
